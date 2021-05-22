@@ -1,25 +1,29 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class Form extends Component {
     constructor(props) {
         super(props);
-        
-        /*
-            TODO - set initial state for link name and URL 
 
-        */
+        this.state = {
+            name: "",
+            url: ""
+
+        }
     }
 
+    /*The name on line 42 and line 18,
+     the property value has a value of the name of the input*/  
     handleChange = event => {
-        /*
-            TODO - Logic for changing state based on form changes
-        */
+        const { name, value } = event.target;
+
+        this.setState({[name]: value });
+    
     }
 
     onFormSubmit = (event) => {
         // to prevent page reload on form submit
         event.preventDefault();
-        
+
         /*
             TODO - Logic for calling props to handle submission and setting state changes
         */
@@ -27,13 +31,34 @@ class Form extends Component {
     }
 
     render() {
+        console.log(this.state)
+        return (
 
-        return(
-            <form>
-                {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
+            <form onSubmit={this.onFormSubmit}>
+                <label>
+                    Name
+            <input
+                        name="name"
+                        type="text"
+                        value={this.state.name}
+                        onChange={this.handleChange}
+                        required
+                    />
+                    Url
+            <input
+                        name="URL"
+                        type="url"
+                        value={this.state.URL}
+                        placeholder="http://exampe.com"
+                        onChange={this.handleChange}
+                        required
+                    />
+                </label>
+                <input type="submit" value="Submit" />
             </form>
+
         )
-    
+
     }
 }
 
